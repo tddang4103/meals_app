@@ -35,9 +35,23 @@ class MealDetailScreen extends ConsumerWidget {
                   ),
                 );
               },
-              icon: Icon(
-                isFavorite ? Icons.star : Icons.star_border_outlined,
-                size: 30,
+              icon: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                transitionBuilder: (child, animation) {
+                  return RotationTransition(
+                    turns: Tween<double>(
+                      begin: 0.8,
+                      end: 1.0,
+                    ).animate(animation),
+                    child: child,
+                  );
+                },
+
+                child: Icon(
+                  isFavorite ? Icons.star : Icons.star_border_outlined,
+                  size: 30,
+                  key: ValueKey(isFavorite),
+                ),
               ),
             ),
           ),
@@ -46,9 +60,12 @@ class MealDetailScreen extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            FadeInImage(
-              placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(meal.imageUrl),
+            Hero(
+              tag: meal.id,
+              child: FadeInImage(
+                placeholder: MemoryImage(kTransparentImage),
+                image: NetworkImage(meal.imageUrl),
+              ),
             ),
             const SizedBox(height: 10),
             Text(

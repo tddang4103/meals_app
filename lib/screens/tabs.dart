@@ -5,7 +5,6 @@ import 'package:meals_app/screens/filters.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
 import 'package:meals_app/screens/meals.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:meals_app/providers/meals_provider.dart';
 import 'package:meals_app/providers/filters_provider.dart';
 
 const filter = {
